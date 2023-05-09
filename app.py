@@ -26,6 +26,12 @@ JOBS = [
         'location': 'Faisalabad, Pakistan',
         'salary': 'Rs. 40000'
     },
+    {
+        'id': 4,
+        'title': 'People Manager',
+        'location': 'Faisalabad, Pakistan',
+        'salary': 'Rs. 70000'
+    },
 ]
 
 @app.route("/")
