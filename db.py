@@ -5,7 +5,7 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-db_connecton_string = os.getenv('DATABASE_URL')
+db_connecton_string = os.environ.get('DATABASE_URL')
 
 engine = create_engine(db_connecton_string,
                        connect_args={
