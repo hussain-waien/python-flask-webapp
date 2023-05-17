@@ -1,46 +1,18 @@
 from flask import Flask, redirect, render_template, request, jsonify
+from db import display_jobs_from_db
+from sqlalchemy import text
 
 app = Flask(__name__)
-JOBS = [
-    {
-        'id': 0,
-        'title': 'Data Scientist',
-        'location': 'Lahore, Pakistan',
-        'salary': 'Rs. 55000'
-    },
-    {
-        'id': 1,
-        'title': 'Backend Web Developer',
-        'location': 'Karachi, Pakistan',
-        'salary': 'Rs. 60000'
-    },
-    {
-        'id': 2,
-        'title': 'Frontend Web Developer',
-        'location': 'Islamabad, Pakistan',
-        'salary': 'Rs. 45000'
-    },
-    {
-        'id': 3,
-        'title': 'Graphic Designer',
-        'location': 'Faisalabad, Pakistan',
-        'salary': 'Rs. 40000'
-    },
-    {
-        'id': 4,
-        'title': 'People Manager',
-        'location': 'Faisalabad, Pakistan',
-        'salary': 'Rs. 70000'
-    },
-]
 
 @app.route("/")
 def home():
-    return render_template('index.html', jobs=JOBS)
+    jobs = display_jobs_from_db()
+    return render_template('index.html', jobs=jobs)
 
 @app.route("/api/jobs")
 def jobs():
-    return jsonify(JOBS)
+    jobs = display_jobs_from_db()
+    return jsonify(jobs)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
